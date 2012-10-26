@@ -1,0 +1,57 @@
+<resources>
+
+    <string name="app_name">PokeTools</string>
+    <string name="appIcon">PokExcel</string>
+    
+    <string name="dummy">（ダミー）</string>
+    
+    <string name="title_activity_main">PokeTools</string>
+    <string name="title_activity_members">個体</string>
+    <string name="title_activity_alias">ｴｲﾘｱｽ</string>
+    <string name="title_activity_race">種族</string>
+    <string name="title_activity_type">タイプ</string>
+    <string name="title_activity_move">技</string>
+    
+    <string name="common_add">追加</string>
+    <string name="common_reload">再読み込み</string>
+    <string name="common_save">保存</string>
+    <string name="common_cancel">キャンセル</string>
+    
+    <string name="tab_name_battle">バトル</string>
+    <string name="tab_name_user">個人</string>
+    <string name="tab_name_envi">環境</string>
+    <string name="tab_name_common">一般</string>
+    <string name="tab_name_settings">設定</string>
+    
+    <string name="button_members">個体</string>
+    <string name="button_teams">チーム</string>
+    <string name="button_log">試合ログ</string>
+    <string name="button_trainer">人物メモ</string>
+    <string name="button_alias">エイリアス</string>
+    
+    <string name="button_race">種族</string>
+    <string name="button_type">タイプ</string>
+    <string name="button_move">技</string>
+    <string name="button_ability">特性</string>
+    <string name="button_item">道具</string>
+    <string name="button_dream">夢特性</string>
+    
+    <string name="text_homedir">ホームディレクトリ</string>
+    
+    <string name="path_homedir">/sdcard/PokeTools/</string>
+    <string name="path_members">user/member.csv</string>
+    <string name="path_alias">user/alias.csv</string>
+    <string name="path_race">common/race.csv</string>
+    <string name="path_type">common/type.csv</string>
+    <string name="path_move">common/move.csv</string>
+    <string name="path_effect">common/effect.csv</string>
+    <string name="path_pk">image/pk/</string>
+    
+    <string name="value_memberstate_text1">24sp</string>
+    <string name="value_memberstate_text2">20sp</string>
+    <string name="value_memberstate_move">14sp</string>
+    
+    <string name="key_homedir">homeDir</string>
+    <string name="key_level">level</string>
+
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#FFFFFF</color>
+    <color name="titlebar_background">#222222</color>
+    <color name="titlebar_text">#FFFFFF</color>
+    <color name="button_background">#999999</color>
+    <color name="button_text">#000000</color>
+    <color name="memberview_background">#00FFFFFF</color>
+</resources>
