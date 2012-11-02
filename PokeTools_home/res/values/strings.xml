@@ -1,0 +1,40 @@
+<resources>
+
+    <string name="app_name">PokeTools_home</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">PtHome</string>
+    <string name="tab_name_battle">対戦</string>
+    <string name="tab_name_usr">個人</string>
+    
+    <string name="key_homedir">key_homedir</string>
+    <string name="key_level">key_level</string>
+    
+    <string name="path_homedir">/sdcard/PokeTools/</string>
+    
+    <string name="button_reload">再読み込み</string>
+    <string name="button_save">保存</string>
+    
+    <string name="tab_name_env">環境</string>
+    <string name="button_env_dream">夢特性</string>
+    <string name="button_env_alloc">調整パターン</string>
+    <string name="button_env_spec">種族別調整パターン</string>
+    <string name="button_env_move">種族別技パターン</string>
+    <string name="button_env_item">種族別道具パターン</string>
+    <string name="button_env_ability">種族別デフォルト特性</string>
+    
+    <string name="tab_name_common">一般</string>
+    <string name="button_common_race">種族</string>
+    <string name="button_common_type">タイプ</string>
+    <string name="button_common_move">技</string>
+    <string name="button_common_ability">特性</string>
+    <string name="button_common_item">道具</string>
+    <string name="button_common_dream">夢特性</string>
+    
+    <string name="tab_name_settings">設定</string>
+    <string name="text_settings_homedir">ホーム</string>
+    <string name="text_settings_level">レベル</string>
+    <string name="text_settings_level_1">1</string>
+    <string name="text_settings_level_50">50</string>
+    <string name="text_settings_level_100">100</string>
+
+</resources>
