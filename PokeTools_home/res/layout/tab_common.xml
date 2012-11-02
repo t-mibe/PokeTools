@@ -5,10 +5,10 @@
     android:orientation="vertical" >
 
     <Button
-        android:id="@+id/button_common_race"
+        android:id="@+id/button_common_species"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button_common_race"
+        android:text="@string/button_common_species"
         />
     <Button
         android:id="@+id/button_common_type"

@@ -1,8 +1,8 @@
 <resources>
 
-    <string name="app_name">PokeTools_home</string>
+    <string name="app_name">PokeTools</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">PtHome</string>
+    <string name="title_activity_main">PokeTools</string>
     <string name="tab_name_battle">対戦</string>
     <string name="tab_name_usr">個人</string>
     
@@ -23,7 +23,7 @@
     <string name="button_env_ability">種族別デフォルト特性</string>
     
     <string name="tab_name_common">一般</string>
-    <string name="button_common_race">種族</string>
+    <string name="button_common_species">種族</string>
     <string name="button_common_type">タイプ</string>
     <string name="button_common_move">技</string>
     <string name="button_common_ability">特性</string>

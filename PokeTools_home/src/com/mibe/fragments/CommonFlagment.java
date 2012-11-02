@@ -1,5 +1,6 @@
 package com.mibe.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.mibe.pt_home.R;
+import com.mibe.pt_species.SpeciesViewActivity;
 
 /**
  * 環境タブの表示を定義するフラグメント
@@ -36,7 +38,7 @@ public class CommonFlagment extends android.support.v4.app.Fragment{
 	private void setButtonAction(View view) {
 		
 		// 種族閲覧ボタンを設定する
-		setRaceButton(view);
+		setSpeciesButton(view);
 		
 		// タイプ閲覧ボタンを設定する
 		setTypeButton(view);
@@ -52,16 +54,16 @@ public class CommonFlagment extends android.support.v4.app.Fragment{
 	}
 	
 	// 種族閲覧ボタンを設定する
-	private void setRaceButton(View view) {
-		Button button = (Button)view.findViewById(R.id.button_common_race);
+	private void setSpeciesButton(View view) {
+		Button button = (Button)view.findViewById(R.id.button_common_species);
 		button.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 
-				Toast.makeText(getActivity(), "種族", Toast.LENGTH_SHORT).show();
+				//Toast.makeText(getActivity(), "種族", Toast.LENGTH_SHORT).show();
 				
 				// 種族閲覧モードのIntentを作成する
-				//Intent intent = new Intent(getActivity(), RaceActivity.class);
-				//startActivityForResult(intent, REQUESTCODE_RACE);
+				Intent intent = new Intent(getActivity(), SpeciesViewActivity.class);
+				startActivity(intent);
 			}
 		});
 	}

@@ -20,6 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.mibe.pt_species.SpeciesViewActivity"
+            android:label="@string/species_title">
+        </activity>
     </application>
 
 </manifest>
