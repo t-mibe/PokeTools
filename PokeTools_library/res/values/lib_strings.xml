@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">PokeTools</string>
+    
+    <string name="homeapp_package">com.mibe.pt_home</string>
+    <string name="homeapp_class">MainActivity</string>
+    
+    <string name="key_homedir">key_homedir</string>
+    <string name="key_level">key_level</string>
+    
+    <string name="default_homeDir">/sdcard/PokeTools/</string>
+    <string name="default_level">50</string>
+</resources>

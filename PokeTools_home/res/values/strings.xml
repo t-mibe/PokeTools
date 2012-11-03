@@ -6,11 +6,6 @@
     <string name="tab_name_battle">対戦</string>
     <string name="tab_name_usr">個人</string>
     
-    <string name="key_homedir">key_homedir</string>
-    <string name="key_level">key_level</string>
-    
-    <string name="path_homedir">/sdcard/PokeTools/</string>
-    
     <string name="button_reload">再読み込み</string>
     <string name="button_save">保存</string>
     

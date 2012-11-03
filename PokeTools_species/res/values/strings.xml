@@ -2,7 +2,6 @@
 
     <string name="app_name">PokeTools_species</string>
     <string name="hello_world">Hello world!</string>
-    <string name="menu_settings">Settings</string>
     <string name="species_title">PokeTools: 種族</string>
 
 </resources>

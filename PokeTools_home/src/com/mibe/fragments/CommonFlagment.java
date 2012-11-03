@@ -57,10 +57,8 @@ public class CommonFlagment extends android.support.v4.app.Fragment{
 	private void setSpeciesButton(View view) {
 		Button button = (Button)view.findViewById(R.id.button_common_species);
 		button.setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
-
-				//Toast.makeText(getActivity(), "種族", Toast.LENGTH_SHORT).show();
-				
 				// 種族閲覧モードのIntentを作成する
 				Intent intent = new Intent(getActivity(), SpeciesViewActivity.class);
 				startActivity(intent);
@@ -72,6 +70,7 @@ public class CommonFlagment extends android.support.v4.app.Fragment{
 	private void setTypeButton(View view){
 		Button button = (Button)view.findViewById(R.id.button_common_type);
 		button.setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
 
 				Toast.makeText(getActivity(), "タイプ", Toast.LENGTH_SHORT).show();
@@ -87,6 +86,7 @@ public class CommonFlagment extends android.support.v4.app.Fragment{
 	private void setMoveButton(View view){
 		Button button = (Button)view.findViewById(R.id.button_common_move);
 		button.setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
 
 				Toast.makeText(getActivity(), "技", Toast.LENGTH_SHORT).show();
@@ -102,6 +102,7 @@ public class CommonFlagment extends android.support.v4.app.Fragment{
 	private void setAbilityButton(View view){
 		Button button = (Button)view.findViewById(R.id.button_common_ability);
 		button.setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
 
 				Toast.makeText(getActivity(), "特性", Toast.LENGTH_SHORT).show();
@@ -117,6 +118,7 @@ public class CommonFlagment extends android.support.v4.app.Fragment{
 	private void setItemButton(View view){
 		Button button = (Button)view.findViewById(R.id.button_common_item);
 		button.setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
 
 				Toast.makeText(getActivity(), "道具", Toast.LENGTH_SHORT).show();

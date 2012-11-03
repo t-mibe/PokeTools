@@ -88,6 +88,7 @@ public class SettingsFlagment extends android.support.v4.app.Fragment{
 		// 再読み込みボタンを取得し設定する
 		Button button = (Button)view.findViewById(R.id.button_reload);
 		button.setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				reloadSetting(view);
 			}
@@ -98,7 +99,7 @@ public class SettingsFlagment extends android.support.v4.app.Fragment{
 	private void reloadSetting(View view){
 
 		// ホームディレクトリのパスを取得する
-		String homeDir = sp.getString(getString(R.string.key_homedir), getString(R.string.path_homedir));
+		String homeDir = sp.getString(getString(R.string.key_homedir), getString(R.string.default_homeDir));
 		
 		// レベルの値を取得する
 		int level = sp.getInt(getString(R.string.key_level), Integer.parseInt(getString(R.string.text_settings_level_50)));
@@ -117,6 +118,7 @@ public class SettingsFlagment extends android.support.v4.app.Fragment{
 		// 再読み込みボタンを取得し設定する
 		Button button = (Button)view.findViewById(R.id.button_save);
 		button.setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				saveSetting(view); // 保存処理
 			}
@@ -179,6 +181,7 @@ public class SettingsFlagment extends android.support.v4.app.Fragment{
 		// ボタンを取得し設定する
 		Button button = (Button)view.findViewById(id);
 		button.setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
 
 				// レベル指定のテキストボックスを取得する
