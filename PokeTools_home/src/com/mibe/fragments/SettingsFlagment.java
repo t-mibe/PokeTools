@@ -99,7 +99,7 @@ public class SettingsFlagment extends android.support.v4.app.Fragment{
 	private void reloadSetting(View view){
 
 		// ホームディレクトリのパスを取得する
-		String homeDir = sp.getString(getString(R.string.key_homedir), getString(R.string.default_homeDir));
+		String homeDir = sp.getString(getString(R.string.key_homeDir), getString(R.string.default_homeDir));
 		
 		// レベルの値を取得する
 		int level = sp.getInt(getString(R.string.key_level), Integer.parseInt(getString(R.string.text_settings_level_50)));
@@ -140,7 +140,7 @@ public class SettingsFlagment extends android.support.v4.app.Fragment{
 		Editor editor = sp.edit();
 		
 		// ホームディレクトリのパスを保存する
-		editor.putString(getString(R.string.key_homedir), homeDir);
+		editor.putString(getString(R.string.key_homeDir), homeDir);
 		
 		// レベルを保存する
 		editor.putInt(getString(R.string.key_level), level);

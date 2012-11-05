@@ -10,4 +10,9 @@ import com.mibe.pt_library.ViewCsvActivity;
  */
 public class SpeciesViewActivity extends ViewCsvActivity {
 
+	// 表示するファイルのローカルパスを取得する
+	@Override
+	public String getLocalPath(){
+		return getString(R.string.species_localPath);
+	}
 }

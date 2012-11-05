@@ -105,11 +105,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		@Override
 		public Fragment getItem(int i) {
 			
-			switch(i + 1){
+			switch(i){
+			case 0: return new BattleFlagment();
 			case 1: return new BattleFlagment();
-			case 3: return new EnvironmentFlagment();
-			case 4: return new CommonFlagment();
-			case 5: return new SettingsFlagment();
+			case 2: return new EnvironmentFlagment();
+			case 3: return new CommonFlagment();
+			case 4: return new SettingsFlagment();
 			}
 			
 			return new BattleFlagment();

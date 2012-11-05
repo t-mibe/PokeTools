@@ -3,5 +3,7 @@
     <string name="app_name">PokeTools_species</string>
     <string name="hello_world">Hello world!</string>
     <string name="species_title">PokeTools: 種族</string>
+    
+    <string name="species_localPath">common/spacies.xml</string>
 
 </resources>
