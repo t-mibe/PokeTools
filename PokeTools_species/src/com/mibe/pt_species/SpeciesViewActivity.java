@@ -1,6 +1,6 @@
 package com.mibe.pt_species;
 
-import com.mibe.pt_library.ViewCsvActivity;
+import com.mibe.lib_activity.ViewCsvActivity;
 
 /**
  * 種族データ一覧のActivityと

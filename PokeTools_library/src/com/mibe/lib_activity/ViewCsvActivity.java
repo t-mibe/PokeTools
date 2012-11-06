@@ -1,6 +1,12 @@
-package com.mibe.pt_library;
+package com.mibe.lib_activity;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.mibe.pt_library.R;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -11,6 +17,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import au.com.bytecode.opencsv.CSVReader;
 
 /**
  * CSVファイルを表示するだけのListActivity
@@ -36,6 +43,9 @@ public abstract class ViewCsvActivity extends ListActivity {
 
 	// ファイルパス
 	private String filePath;
+	
+	// 展開したCSV全データ
+	private List<String[]> list_data;
 
 	//////////////////
 	// Activity制御 //
@@ -54,6 +64,15 @@ public abstract class ViewCsvActivity extends ListActivity {
 
 		// 表示するファイルのローカルパスを設定する
 		filePath = homeDir.concat(getLocalPath());
+		
+		// ファイルを展開する
+		readCsv();
+		
+		// 表示するテキスト配列を生成する
+		
+		// 展開したデータを表示する
+		showList();
+		
 
 		showSettings();
 		showDummyList();
@@ -152,6 +171,27 @@ public abstract class ViewCsvActivity extends ListActivity {
 
 	// 表示するファイルのローカルパスを設定する
 	public abstract String getLocalPath();
+	
+	// ファイルを展開する
+	private void readCsv(){
+		CSVReader reader = null;
+
+		try {
+			reader = new CSVReader(new FileReader(filePath));
+			list_data = reader.readAll();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 表示する
+	private void showList(){
+		
+		// Beanに展開してから表示したい
+		//setListAdapter(new ArrayAdapter<String>(this, R.layout.listview, list_data.toArray(new String[0])));
+	}
 
 	//////////////////////////////////
 	// アイテムが選択された時の処理 //
