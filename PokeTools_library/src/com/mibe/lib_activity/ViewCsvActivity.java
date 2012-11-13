@@ -1,21 +1,27 @@
 package com.mibe.lib_activity;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.mibe.pt_library.R;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import au.com.bytecode.opencsv.CSVReader;
 
@@ -31,6 +37,8 @@ import au.com.bytecode.opencsv.CSVReader;
  *
  */
 public abstract class ViewCsvActivity extends ListActivity {
+	
+	private final Context context = this;
 
 	// トースト出力の表示時間
 	private static final int duration = Toast.LENGTH_SHORT;
@@ -43,9 +51,12 @@ public abstract class ViewCsvActivity extends ListActivity {
 
 	// ファイルパス
 	private String filePath;
-	
+
 	// 展開したCSV全データ
-	private List<String[]> list_data;
+	private List<Serializable> list_data;
+	
+	// 選択モードフラグ（本来はfalse）
+	private boolean select = true;
 
 	//////////////////
 	// Activity制御 //
@@ -64,45 +75,19 @@ public abstract class ViewCsvActivity extends ListActivity {
 
 		// 表示するファイルのローカルパスを設定する
 		filePath = homeDir.concat(getLocalPath());
-		
+
 		// ファイルを展開する
 		readCsv();
-		
+
 		// 表示するテキスト配列を生成する
-		
+
 		// 展開したデータを表示する
 		showList();
-		
 
-		showSettings();
-		showDummyList();
+
+		//showSettings();
+		//showDummyList();
 	}
-
-	/* 
-	// Bundleに状態を保存，いらないかも
-	@Override  
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-
-		// 展開するCSVファイルのフルパスを保存する
-		//outState.putString(getString(R.string.key_filePath), filePath);
-
-		// スクロール位置を保存する
-		//outState.putInt(getString(R.string.key_scroll), getListView().getFirstVisiblePosition());
-	}
-
-	// Bundleから状態を復元
-	@Override  
-	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		super.onRestoreInstanceState(savedInstanceState);
-
-		// 展開するCSVファイルのフルパスを取得する
-		
-		// ListViewを作成，表示する
-
-		// スクロール位置を復元する
-	}
-	*/
 
 	////////////////
 	// 初期化関連 //
@@ -171,39 +156,152 @@ public abstract class ViewCsvActivity extends ListActivity {
 
 	// 表示するファイルのローカルパスを設定する
 	public abstract String getLocalPath();
-	
+
 	// ファイルを展開する
 	private void readCsv(){
+
+		// ファイルの有無をチェックする
+		if(!(new File(filePath).isFile()))return;
+
 		CSVReader reader = null;
 
 		try {
-			reader = new CSVReader(new FileReader(filePath));
-			list_data = reader.readAll();
+			reader = new CSVReader(new InputStreamReader(new FileInputStream(filePath),"Shift_JIS"));
+
+			list_data = new ArrayList<Serializable>();
+
+			String[] record;
+			while((record = reader.readNext()) != null){
+
+				Serializable serializable = makeBean(record);
+				list_data.add(serializable);
+			}
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
+	// レコードを対応したJavaBeanに変換する
+	public abstract Serializable makeBean(String[] record);
+
 	// 表示する
 	private void showList(){
-		
+
+		if(list_data == null)return;
+		if(list_data.size() == 0)return;
+
+		// ListViewのスクロールバーにつまみをつける
+		getListView().setFastScrollEnabled(true);
+
+		// 表示用の配列
+		List<String> list_view = new ArrayList<String>();
+
+		int size = list_data.size();
+		for(int i = 0; i < size; i++){
+			list_view.add(list_data.get(i).toString());
+		}
+
 		// Beanに展開してから表示したい
-		//setListAdapter(new ArrayAdapter<String>(this, R.layout.listview, list_data.toArray(new String[0])));
+		setListAdapter(new ArrayAdapter<String>(this, R.layout.listview, list_view));
 	}
 
 	//////////////////////////////////
 	// アイテムが選択された時の処理 //
 	//////////////////////////////////
 
-	// アイテムが選択された時
+	// アイテムが選択された時の処理（必要ならオーバーライドする）
 	@Override
 	public void onListItemClick(ListView listView, View v, int position, long id){
 		super.onListItemClick(listView, listView, position, id);
 
 		// 種族データを表示するダイアログを作成，表示する
-		Toast.makeText(this, listView.getItemAtPosition(position).toString(), duration).show();
+		showItemDialog(list_data.get(position));
+	}
+
+	// 選択したアイテムに対応したダイアログを表示する
+	private void showItemDialog(Serializable record){
+
+		
+		// ダイアログのタイトルを作成する
+		View title = getItemDialogTitle(record);
+
+		// ダイアログのビューを作成する
+		View view = getItemDialogView(record);
+		
+		// ダイアログを作成する
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setCancelable(false);
+		builder.setCustomTitle(title);
+		builder.setView(view);
+		builder.setNegativeButton("閉じる", new OnItemCloseClickListener());
+		
+		// 選択モードのとき，決定ボタンを追加する
+		if(select)builder.setPositiveButton("決定", new OnItemSelectClickListener());
+		
+		// 画面の回転ロックを有効にする
+		setOrientation(true);
+		
+		// ダイアログを表示する
+		builder.show();
+	}
+	
+	// ダイアログのタイトルを作成する
+	public View getItemDialogTitle(Serializable record){
+		
+		TextView textView = new TextView(this);
+		textView.setText(record.toString());
+		
+		return textView;
+	}
+
+	// ダイアログのビューを作成する
+	public View getItemDialogView(Serializable record){
+		
+		TextView textView = new TextView(this);
+		textView.setText(record.toString());
+		
+		return textView;
+	}
+	
+	// ダイアログのボタンを押したときの動作
+	private class OnItemClickListener implements DialogInterface.OnClickListener{
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			// 画面の回転ロックを解除する
+			setOrientation(false);
+		}
+	}
+	
+	// アイテムの閉じるボタンを押したときの動作
+	private class OnItemCloseClickListener extends OnItemClickListener{
+		
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			super.onClick(dialog, which);
+			Toast.makeText(context, "close", duration).show();
+		}
+	}
+	
+	// アイテムの決定ボタンを押したときの動作
+	private class OnItemSelectClickListener extends OnItemClickListener{
+
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			super.onClick(dialog, which);
+			Toast.makeText(context, "select", duration).show();
+		}
+	}
+	
+	// 画面の回転ロックを制御する
+	private void setOrientation(boolean mode){
+		if(mode){
+			Toast.makeText(context, "spin: lock", duration).show();
+		} else {
+			Toast.makeText(context, "spin: unlock", duration).show();
+		}
 	}
 
 	//////////////////
