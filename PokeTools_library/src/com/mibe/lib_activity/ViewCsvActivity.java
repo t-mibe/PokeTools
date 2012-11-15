@@ -17,6 +17,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -217,8 +218,14 @@ public abstract class ViewCsvActivity extends ListActivity {
 	public void onListItemClick(ListView listView, View v, int position, long id){
 		super.onListItemClick(listView, listView, position, id);
 
-		// 種族データを表示するダイアログを作成，表示する
-		showItemDialog(list_data.get(position));
+		// 選択したアイテムを表示するダイアログを作成，表示する
+		onListItemClick(list_data.get(position));
+	}
+	
+	// 指定したレコードに対応した処理（必要ならオーバーライドする
+	public void onListItemClick(Serializable record){
+		// 選択したアイテムを表示するダイアログを作成，表示する
+		showItemDialog(record);
 	}
 
 	// 選択したアイテムに対応したダイアログを表示する
@@ -302,6 +309,18 @@ public abstract class ViewCsvActivity extends ListActivity {
 		} else {
 			Toast.makeText(context, "spin: unlock", duration).show();
 		}
+	}
+	
+	//////////////
+	// 情報取得 //
+	//////////////
+	
+	public String getHomeDir(){
+		return homeDir;
+	}
+	
+	public Drawable getDefaultIcon(){
+		return getResources().getDrawable(R.drawable.ic_launcher);
 	}
 
 	//////////////////
