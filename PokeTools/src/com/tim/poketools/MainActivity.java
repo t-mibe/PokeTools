@@ -61,6 +61,9 @@ import com.tim.user.MemberActivity;
 	ログ削除
 	人物削除
 	ホームディレクトリ削除
+	※ 以下，更新版
+	使用するGoogleアカウント名
+	ホームディレクトリのパス
  * @author mibe
  *
  */
@@ -549,7 +552,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			Editor editor = sp.edit();
 			
 			// ホームディレクトリの新しい値を取得する
-			String path = ((EditText)view.findViewById(R.id.homeDir)).getText().toString();
+			String path = ((EditText)view.findViewById(R.id.editText_homeDir)).getText().toString();
 			
 			// ホームディレクトリの値を更新する
 			editor.putString(fa.getString(R.string.key_homedir), path);
@@ -579,7 +582,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		private void setHomePathEdit(View view, FragmentActivity fa, SharedPreferences sp){
 			
 			// テキスト入力欄を取得する
-			EditText editText = (EditText)view.findViewById(R.id.homeDir);
+			EditText editText = (EditText)view.findViewById(R.id.editText_homeDir);
 			
 			// テキスト入力欄に設定値を入れる
 			editText.setText(sp.getString(fa.getString(R.string.key_homedir), ""));
